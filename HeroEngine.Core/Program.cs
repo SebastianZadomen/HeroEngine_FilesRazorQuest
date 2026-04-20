@@ -27,6 +27,7 @@ Necesitan de tu ayuda , elige tu clase : ";
 [2] MAGE   
 [3] ROGUE   ";
 
+
         const string Menu = @"
         =====================================================
         ||                                                 ||             
