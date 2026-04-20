@@ -1,0 +1,32 @@
+# ==========================================
+# Visual Studio / .NET
+# ==========================================
+
+# Carpeta oculta de Visual Studio (Aquí está tu filecontextindex)
+.vs/
+
+# Resultados de compilación
+[Bb]in/
+[Oo]bj/
+
+# Archivos de usuario específicos
+*.rsuser
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Archivos de test temporales
+*.TestResults
+[Tt]est[Rr]esult*/
+[Bb]uild[Ll]og.*
+
+# Archivos de caché y herramientas
+.sonarqube/
+*.dotCover
+
+# ==========================================
+# SO / Otros
+# ==========================================
+.DS_Store
+Thumbs.db

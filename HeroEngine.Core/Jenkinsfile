@@ -1,0 +1,48 @@
+pipeline {
+    agent any
+    environment {
+        SONAR_SERVER = 'SonarLocal'
+        SONAR_PROJECT_KEY = 'HeroEngine' 
+    }
+    stages {
+        stage('Checkout') {
+            steps {
+                checkout scm
+            }
+        }
+        
+        stage('Preparar SonarScanner') {
+            steps {
+                bat 'dotnet tool install dotnet-sonarscanner --tool-path .\\tools || exit 0'
+            }
+        }
+
+        stage('SonarQube Begin') {
+            steps {
+                withSonarQubeEnv('SonarLocal') { 
+                    bat '.\\tools\\dotnet-sonarscanner begin /k:"HeroEngine" /d:sonar.cs.opencover.reportsPaths="**/coverage.opencover.xml"'
+                }
+            }
+        }
+
+        stage('Build') {
+            steps {
+                bat 'dotnet build "HeroEngine/HeroEngine.sln"'
+            }
+        }
+
+        stage('Test') {
+            steps {
+                bat 'dotnet test "HeroEngine/HeroEngine.sln" --no-build --collect:"XPlat Code Coverage" -- DataCollectionRunSettings.DataCollectors.DataCollector.Configuration.Format=opencover'
+            }
+        }
+
+        stage('SonarQube End') {
+            steps {
+                withSonarQubeEnv('SonarLocal') {
+                    bat '.\\tools\\dotnet-sonarscanner end'
+                }
+            }
+        }
+    }
+}
