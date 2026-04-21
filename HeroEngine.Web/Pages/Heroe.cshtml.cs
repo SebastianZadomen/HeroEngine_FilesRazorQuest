@@ -3,11 +3,9 @@ using HeroEngine.Web.Pages.Data;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-
-
 namespace HeroEngine.Web.Pages
 {
-    public class IndexModel : PageModel
+    public class HeroeModel : PageModel
     {
         public List<Hero> HeroRegister { get; set; }
         public void OnGet()
@@ -16,3 +14,5 @@ namespace HeroEngine.Web.Pages
         }
     }
 }
+
+ 

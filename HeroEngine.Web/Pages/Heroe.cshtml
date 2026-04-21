@@ -1,0 +1,35 @@
+﻿@page
+@model HeroEngine.Web.Pages.HeroeModel
+@{
+    ViewData["Title"] = "Heroes";
+}
+<div class="card p-3">
+    <h1 class="display text-center">Heroes</h1>
+    <table class="table table-striped table-hover border">
+        <thead class="table-light">
+            <tr>
+                <th>Clase</th>
+                <th>Nombre</th>
+                <th>Nivel</th>
+                <th>Vida</th>
+                <th>Detalles</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var hero in Model.HeroRegister)
+            {
+                <tr>
+                    <th>@hero.GetType().Name</th>
+                    <th>@hero.Name</th>
+                    <th>@hero.Level</th>
+                    <th>@hero.Health</th>
+                    <th>
+                    <a asp-page="./Detail" asp-route-nom="@hero.Name" class="btn btn-info btn-sm">
+                        Detalles
+                    </a>
+                    </th>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
