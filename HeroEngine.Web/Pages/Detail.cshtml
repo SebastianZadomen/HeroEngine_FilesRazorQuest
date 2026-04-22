@@ -1,31 +1,68 @@
 ﻿@page "{name}"
+@using HeroEngine.Model.Ability
 @model HeroEngine.Web.Pages.DetailModel
 @{
     ViewData["Title"] = "Detalle del Héroe";
 }
-<h1>Detalles de @Model.HeroSelected.Name</h1>
-<h3>Clase : [@Model.HeroSelected.GetType().Name]</h3>
-<h3>Level : @Model.HeroSelected.Level</h3>
-<h3>Health : @Model.HeroSelected.Health</h3>
+<div class="container mt-4">
+    <div class="border-bottom mb-4 pb-2">
+        <h1 class="display-5">Detalles de <strong>@Model.HeroSelected.Name</strong></h1>
+    </div>
 
-<h2>Habilidades:</h2>
-<table>
-    <thead>
-        <tr>
-            <th>Slot 1</th>
-            <th>Slot 2</th>
-            <th>Slot 3</th>
-            <th>Slot 4</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            @foreach (var skill in Model.HeroSelected.Skills)
-            {
-            <th><p>@(skill.Name != null ? @skill.Name : "Vacio")</p>
-                <p>@(skill.Rarity != null ? @skill.Rarity : "Desconocido")</p>
-            </th>
-            }
-        </tr>
-    </tbody>
-</table>
+    <div class="row mb-4">
+        <div class="col-md-6">
+            <ul class="list-group">
+                <li class="list-group-item"><strong>Clase:</strong> @Model.HeroSelected.GetType().Name</li>
+                <li class="list-group-item"><strong>Nivel:</strong> @Model.HeroSelected.Level</li>
+                <li class="list-group-item"><strong>Vida actual:</strong> <span class="text-success"><strong>@Model.HeroSelected.Health HP</strong></span></li>
+            </ul>
+        </div>
+    </div>
+    <h2 class="mt-4">Habilidades:</h2>
+    <table class="table table-bordered table-striped text-center">
+        <thead class="table-dark">
+            <tr>
+                <th>Slot 1</th>
+                <th>Slot 2</th>
+                <th>Slot 3</th>
+                <th>Slot 4</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                @foreach (var skill in Model.HeroSelected.Skills)
+                {
+                    <td>
+                        @if (skill != null)
+                        {
+                            <p class="fw-bold mb-1">@skill.Name</p>
+                            @if(skill.Rarity == RarityType.Comun)
+                            {
+                                <span class="badge  text-dark" style="background-color: #596FFF;">@skill.Rarity</span>
+                            }
+                            else if (skill.Rarity == RarityType.Epico)
+                            {
+                                <span class="badge text-dark " style="background-color: #7C3EA8;">@skill.Rarity</span>
+                            }
+                            else if (skill.Rarity == RarityType.Raro)
+                            {
+                                <span class="badge text-dark" style="background-color: #3EA86F;">@skill.Rarity</span>
+                            }
+                            else if (skill.Rarity == RarityType.Legendario)
+                            {
+                                <span class="badge text-dark" style="background-color: #BFAF50;">@skill.Rarity</span>
+                            }
+                        }
+                        else
+                        {
+                            <p>Vacío</p>
+                        }
+                    </td>
+                }
+            </tr>
+        </tbody>
+    </table>
+    <div class="mt-4">
+        <a asp-page="/Heroes" class="btn btn-secondary">Volver al listado</a>
+    </div>
+</div>

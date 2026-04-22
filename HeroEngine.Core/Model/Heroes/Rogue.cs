@@ -1,4 +1,5 @@
-﻿using HeroEngine.Utils;
+﻿using HeroEngine.Model.Ability;
+using HeroEngine.Utils;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,10 +24,13 @@ namespace HeroEngine.Model.Heroes
         public Rogue(string name) : base(name)
         {
             Energy = EnergyMax;
+            this.AddSkill(new AttackSkills("Golpe de Daga", RarityType.Comun, 15, 5, 20));
+
         }
 
         public Rogue(string name, int level) : base(name, level)
         {
+            this.AddSkill(new AttackSkills("Golpe de Daga", RarityType.Comun, 15, 5, 20));
             Energy = EnergyMax;
             Dagas = 0;
         }

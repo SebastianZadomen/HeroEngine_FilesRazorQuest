@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace HeroEngine.Web.Pages
 {
-    public class HeroeModel : PageModel
+    public class HeroesModel : PageModel
     {
         public List<Hero> HeroRegister { get; set; }
         public void OnGet()

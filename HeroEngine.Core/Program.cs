@@ -123,7 +123,6 @@ Necesitan de tu ayuda , elige tu clase : ";
         Console.WriteLine(msg);
         Hero newHero = null;
         bool valid = false;
-        AttackSkills atkBase = null;
         while (!valid)
         {
             Console.Write("\nSelecciona tu clase (1-3): ");
@@ -137,17 +136,14 @@ Necesitan de tu ayuda , elige tu clase : ";
             {
                 case "1":
                     newHero = new Warrior(nameChoice, 1);
-                    atkBase = new AttackSkills("Golpe de espada", RarityType.Comun, 15, 5, 20);
                     valid = true;
                     break;
                 case "2":
                     newHero = new Mage(nameChoice, 1);
-                    atkBase = new AttackSkills("Bola de fuego", RarityType.Comun, 20, 8, 15);
                     valid = true;
                     break;
                 case "3":
                     newHero = new Rogue(nameChoice, 1);
-                    atkBase = new AttackSkills("Ataque rapido", RarityType.Comun, 12, 3, 25);
                     valid = true;
                     break;
                 default:
@@ -159,7 +155,6 @@ Necesitan de tu ayuda , elige tu clase : ";
         Console.WriteLine($"\n¡ {newHero.Name}  se ha unido a tus filas! \n Presiona una tecla para continuar.....");
         Console.ReadKey();
         
-        newHero.AddSkill(atkBase);
         return newHero;
     }
     public static void StartCombat(Hero[] playerTeam)

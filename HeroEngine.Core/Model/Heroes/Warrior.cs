@@ -1,4 +1,5 @@
-﻿using HeroEngine.Utils;
+﻿using HeroEngine.Model.Ability;
+using HeroEngine.Utils;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,13 +22,14 @@ namespace HeroEngine.Model.Heroes
         public Warrior(string name) : base(name)
         {
             Energy = EnergyMax;
-            
+            this.AddSkill(new AttackSkills("Golpe de espada", RarityType.Comun, 15, 5, 20));
         }
 
         public Warrior(string name, int level) : base(name, level)
         {
             Energy = EnergyMax;
-           
+            this.AddSkill(new AttackSkills("Golpe de espada", RarityType.Comun, 15, 5, 20));
+
         }
         public override bool Attack(Hero target, CombatLog log)
         {

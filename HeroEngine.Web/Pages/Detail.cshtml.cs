@@ -2,6 +2,7 @@ using HeroEngine.Model.Heroes;
 using HeroEngine.Web.Pages.Data;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using HeroEngine.Model.Ability;
 
 namespace HeroEngine.Web.Pages
 {

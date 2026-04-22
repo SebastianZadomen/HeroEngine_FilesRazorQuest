@@ -1,5 +1,5 @@
 ﻿@page
-@model HeroEngine.Web.Pages.HeroeModel
+@model HeroEngine.Web.Pages.HeroesModel
 @{
     ViewData["Title"] = "Heroes";
 }
@@ -24,9 +24,9 @@
                     <th>@hero.Level</th>
                     <th>@hero.Health</th>
                     <th>
-                    <a asp-page="./Detail" asp-route-nom="@hero.Name" class="btn btn-info btn-sm">
-                        Detalles
-                    </a>
+                        <a asp-page="/Detail" asp-route-name="@hero.Name" class="btn btn-info btn-sm">
+                            Detalles
+                        </a>
                     </th>
                 </tr>
             }
