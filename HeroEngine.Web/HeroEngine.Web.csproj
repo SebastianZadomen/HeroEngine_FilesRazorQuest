@@ -7,17 +7,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\HeroEngine.Core\HeroEngine.Core.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
     <Reference Include="HeroEngine.Core">
-      <HintPath>..\HeroEngine\HeroEngine.Core\bin\Debug\net10.0\HeroEngine.Core.dll</HintPath>
+      <HintPath>..\HeroEngine.Core\bin\Debug\net10.0\HeroEngine.Core.dll</HintPath>
     </Reference>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Data\Files\" />
   </ItemGroup>
 
 </Project>

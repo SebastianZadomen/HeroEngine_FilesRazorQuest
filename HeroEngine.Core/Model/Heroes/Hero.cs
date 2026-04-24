@@ -64,7 +64,9 @@ namespace HeroEngine.Model.Heroes
             Defense = 0;
 
         }
-        protected Hero() { }
+        protected Hero() {
+            Health = HealthMax;
+        }
         protected Hero(string name) : this(name, 0)
         {
             Defense = 0;

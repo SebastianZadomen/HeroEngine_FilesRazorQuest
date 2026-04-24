@@ -1,0 +1,44 @@
+﻿@page
+@model HeroEngine.Web.Pages.FilesModel
+@{
+    ViewData["Title"] = "Historial de Combates";
+}
+
+<div class="container mt-4">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h1>Combates</h1>
+        <a asp-page-handler="Download" class="btn btn-success">
+            <i class="bi bi-download"></i> Descargar CSV Completo
+        </a>
+    </div>
+
+    <table class="table table-dark table-striped table-hover">
+        <thead>
+            <tr>
+                <th>Héroes</th>
+                <th>Enemigos</th>
+                <th>Resultado</th>
+                <th>Rondas</th>
+                <th>Daño Total</th>
+                <th>MVP</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var match in Model.LastMatches)
+            {
+                <tr>
+                    <td>@string.Join(", ", match.HeroesNames)</td>
+                    <td>@string.Join(", ", match.EnemiesNames)</td>
+                    <td>
+                        <span class="badge @(match.Result == "Victoria" ? "bg-success" : "bg-danger")">
+                            @match.Result
+                        </span>
+                    </td>
+                    <td>@match.TotalRounds</td>
+                    <td>@match.TotalDamage</td>
+                    <td class="text-warning">@match.MVP</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

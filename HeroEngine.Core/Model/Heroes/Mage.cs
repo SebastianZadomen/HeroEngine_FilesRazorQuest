@@ -28,7 +28,7 @@ namespace HeroEngine.Model.Heroes
             this.AddSkill(new AttackSkills("Bola de Fuego", RarityType.Comun, 15, 5, 20));
 
         }
-        public Mage() { }
+        public Mage() : base() { }
 
         public Mage(string name) : base(name)
         {

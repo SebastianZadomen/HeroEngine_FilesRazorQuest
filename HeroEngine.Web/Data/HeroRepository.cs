@@ -27,8 +27,13 @@ namespace HeroEngine.Web.Data
             }
 
             string jsonString = File.ReadAllText(_path);
-            var convertList = JsonSerializer.Deserialize<List<Hero>>(jsonString);
+            if (string.IsNullOrWhiteSpace(jsonString))
+            {
+                Heroes = new List<Hero>();
+                return;
+            }
 
+            var convertList = JsonSerializer.Deserialize<List<Hero>>(jsonString);
             Heroes = convertList ?? new List<Hero>();
         }
         public void SaveAll(IEnumerable<Hero> heroes)

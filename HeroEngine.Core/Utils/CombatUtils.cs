@@ -1,9 +1,12 @@
-﻿using HeroEngine.Model.Heroes;
+﻿using HeroEngine.Data;
+using HeroEngine.Model.Enemy;
+using HeroEngine.Model.Heroes;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using HeroEngine.Core.Data;
 
 namespace HeroEngine.Utils
 {
@@ -51,7 +54,7 @@ namespace HeroEngine.Utils
         }
 
 
-        public static void ShowCombatStats(CombatLog logger)
+        public static void ShowCombatStats(CombatLog logger, string path, Enemy[] enemies, int rounds)
         {
             string textDamage = $"Daño total infligido: {TotalDamage}";
             Console.WriteLine(textDamage);
@@ -78,10 +81,27 @@ namespace HeroEngine.Utils
 
             if (minimumRoundsToDefeat != 9999)
             {
-                string textEnemy = $"Enemigo derrotado: {fastestDefeatedEnemy} (en {minimumRoundsToDefeat} rondas).";
+                string textEnemy = $"Enemigo derrotado: {fastestDefeatedEnemy} (en {minimumRoundsToDefeat} rondas de {rounds}).";
                 Console.WriteLine(textEnemy);
                 logger.LogMessageOnlyText(textEnemy);
             }
+
+            var resultado = new CombatResult()
+            {
+                HeroesNames = heroNames.ToList(),
+                EnemiesNames = enemies.Where(e => e != null).Select(e => e.Name).ToList(),
+                Result = enemies.All(e => e == null || !e.IsAlive) ? "Victoria" : "Derrota",
+
+                TotalRounds = rounds,
+                TotalDamage = TotalDamage,
+                MVP = mvpName
+            };
+
+            var csvWriter = new CsvStatsWriter();
+            csvWriter.AppendCombatStats(resultado);
+
+            logger.SaveToFile(path);
+
         }
 
         public static void ResetStats()

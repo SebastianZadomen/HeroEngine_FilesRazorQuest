@@ -1,5 +1,4 @@
-﻿using HeroEngine.Model.Heroes;
-
+﻿
 namespace HeroEngine.Web.Data
 {
     public static class GameData

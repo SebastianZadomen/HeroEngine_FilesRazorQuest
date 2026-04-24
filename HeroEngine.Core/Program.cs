@@ -1,10 +1,13 @@
-﻿using HeroEngine.Model.Ability;
+﻿using HeroEngine.Data;
+using HeroEngine.Model.Ability;
 using HeroEngine.Model.Enemy;
 using HeroEngine.Model.Heroes;
 using HeroEngine.Utils;
 using System;
 using System.Runtime.Intrinsics.Arm;
 using System.Security.Cryptography.X509Certificates;
+
+
 public class HeroEngineProgram
 {
     public static int CountPlayer = 0;
@@ -352,8 +355,9 @@ Necesitan de tu ayuda , elige tu clase : ";
             Console.WriteLine("DERROTA... Tus héroes han caído ante la oscuridad.");
         }
 
-        CombatUtils.ShowCombatStats(logger);
-        logger.SaveToFile(path);
+        CombatUtils.ShowCombatStats(logger, path, enemies,  round);
+
+
 
         Console.ReadKey();
     }
@@ -413,7 +417,8 @@ Necesitan de tu ayuda , elige tu clase : ";
                     {
                         active[i] = reserves[j];
                         Console.WriteLine($"{active[i].Name} entra al campo de batalla.");
-                        break;
+                        j = reserveCount;
+                        
                     }
                 }
             }
@@ -432,7 +437,7 @@ Necesitan de tu ayuda , elige tu clase : ";
                     {
                         active[i] = reserves[j];
                         logger.LogAction("SISTEMA", active[i].Name, "Aparece desde las sombras", "Campo", 0);
-                        break; 
+                        j = reserveCount; 
                     }
                 }
             }

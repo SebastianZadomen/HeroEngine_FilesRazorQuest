@@ -12,6 +12,8 @@ namespace HeroEngine.Model.Ability
     {
         public int Damage { get; set; }
 
+        public AttackSkills() : base() { }
+
         public AttackSkills(string name, RarityType type, int cost, int pointUse,int damage) : base(name, type, cost, pointUse)
         {
             Damage = damage;

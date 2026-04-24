@@ -12,6 +12,7 @@ namespace HeroEngine.Model.Ability
     public class SupportSkills : Skill
     {
         public int Healing { get; set; }
+        public SupportSkills() : base() { }
         public SupportSkills(string name, RarityType type, int cost, int pointUse, int healing) : base(name, type, cost, pointUse)
         {
             Healing = healing;
