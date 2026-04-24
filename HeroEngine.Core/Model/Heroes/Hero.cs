@@ -1,17 +1,21 @@
-﻿using System;
+﻿using HeroEngine.Model.Ability;
+using HeroEngine.Utils;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Reflection.Metadata.Ecma335;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.Channels;
 using System.Threading.Tasks;
-using HeroEngine.Model.Ability;
-using HeroEngine.Utils;
 
 namespace HeroEngine.Model.Heroes
 {
+    [JsonDerivedType(typeof(Warrior), "warrior")]
+    [JsonDerivedType(typeof(Mage), "mage")]
+    [JsonDerivedType(typeof(Rogue), "rogue")]
     public abstract class Hero
     {
         public const int DamageBase = 5;
@@ -60,8 +64,8 @@ namespace HeroEngine.Model.Heroes
             Defense = 0;
 
         }
-    
-        public Hero(string name) : this(name, 0)
+        protected Hero() { }
+        protected Hero(string name) : this(name, 0)
         {
             Defense = 0;
         }

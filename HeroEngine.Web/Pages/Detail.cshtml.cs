@@ -1,8 +1,8 @@
 using HeroEngine.Model.Heroes;
-using HeroEngine.Web.Pages.Data;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using HeroEngine.Model.Ability;
+using HeroEngine.Web.Data;
 
 namespace HeroEngine.Web.Pages
 {
@@ -13,7 +13,7 @@ namespace HeroEngine.Web.Pages
 
         public void OnGet(string name) 
         {
-            HeroSelected = GameData.HeroRegister.FirstOrDefault(x => x.Name == name);
+           // HeroSelected = GameData.Repository.;
 
         }
     }

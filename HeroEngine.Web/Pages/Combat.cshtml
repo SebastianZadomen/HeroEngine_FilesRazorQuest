@@ -1,0 +1,65 @@
+﻿@page
+@model CombatModel
+@{
+    ViewData["Title"] = "Pagina de Combate";
+}
+<div style="margin: 20px; font-family: sans-serif;">
+    
+    <h1 class="text-center text-primary mb-4">Registro de Combate</h1>
+
+    <div style="border: 2px solid black; padding: 15px; background-color: #eeeeee; height: 500px; overflow-y: scroll;">
+        @foreach (var linea in Model.LogLine)
+        {
+            string lineaUpper = linea.ToUpper();
+
+            if (lineaUpper.Contains("FECHA") || lineaUpper.Contains("PARTICIPANTES"))
+            {
+                <div style="color: #444; font-weight: bold; background-color: #ddd;">@linea</div>
+            }
+            else if (lineaUpper.Contains("[HERO]"))
+            {
+                <div style="color: blue; font-family: monospace; font-weight: bold;">@linea</div>
+            }
+            else if (lineaUpper.Contains("[ENEMY]"))
+            {
+                <div style="color: red; font-family: monospace; font-weight: bold;">@linea</div>
+            }
+            else if (lineaUpper.Contains("ROUND"))
+            {
+                <div style="color: green; font-weight: bold; margin-top: 15px;">@linea</div>
+            }
+            else if (linea.Contains("==="))
+            {
+                
+            }
+            else
+            {
+                <div style="color: black;">@linea</div>
+            }
+        }
+    </div>
+
+    <br />
+
+    <div style="border: 1px solid gray; padding: 15px; background-color: #f9f9f9;">
+        <h3>Resumen del Encuentro</h3>
+        @if (Model.FinalStats.Count > 0)
+        {
+            @foreach (var s in Model.FinalStats)
+            {
+                if (s.ToUpper().Contains("HEROE CON MAS DAÑO"))
+                {
+                    <p style="color: darkblue; font-weight: bold;">@s</p>
+                }
+                else
+                {
+                    <p>@s</p>
+                }
+            }
+        }
+        else
+        {
+            <p>No se encontraron estadísticas para este combate.</p>
+        }
+    </div>
+</div>

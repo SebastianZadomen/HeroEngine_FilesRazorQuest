@@ -21,6 +21,7 @@ namespace HeroEngine.Model.Heroes
         public int SneakAttack => SneakAttackScale * Level ;
         public int Energy { get; set; }
         public int EnergyMax => EnergyBase + (EnergyScaled * Level);
+        public Rogue() : base() { }
         public Rogue(string name) : base(name)
         {
             Energy = EnergyMax;

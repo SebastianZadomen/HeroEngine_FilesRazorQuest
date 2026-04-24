@@ -1,4 +1,5 @@
-﻿using System;
+﻿using HeroEngine.Model.Heroes;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,9 +12,9 @@ namespace HeroEngine.Utils
         
         public static int TotalDamage = 0;
 
-        private static string[] heroNames = new string[10];
+        public static string[] heroNames = new string[10];
         private static int[] heroDamages = new int[10];
-        private static int heroCount = 0;
+        public static int heroCount = 0;
 
    
         private static string fastestDefeatedEnemy = "Ninguno";
@@ -50,10 +51,11 @@ namespace HeroEngine.Utils
         }
 
 
-        public static void ShowCombatStats()
+        public static void ShowCombatStats(CombatLog logger)
         {
-            Console.WriteLine("=== ESTADÍSTICAS FINALES DEL COMBATE ===");
-            Console.WriteLine($"Daño total infligido: {TotalDamage}");
+            string textDamage = $"Daño total infligido: {TotalDamage}";
+            Console.WriteLine(textDamage);
+            logger.LogMessageOnlyText(textDamage);
 
             string mvpName = "N/A";
             int maxDamage = 0;
@@ -69,15 +71,17 @@ namespace HeroEngine.Utils
 
             if (maxDamage > 0)
             {
-                Console.WriteLine($"Heroe mas efectivo: {mvpName} ({maxDamage} pts de daño).");
+                string textMvp = $"Heroe con mas daño: {mvpName} ({maxDamage} pts de daño).";
+                Console.WriteLine(textMvp);
+                logger.LogMessageOnlyText(textMvp);
             }
 
             if (minimumRoundsToDefeat != 9999)
             {
-                Console.WriteLine($"Enemigo derrotados: {fastestDefeatedEnemy} (en {minimumRoundsToDefeat} rondas).");
+                string textEnemy = $"Enemigo derrotado: {fastestDefeatedEnemy} (en {minimumRoundsToDefeat} rondas).";
+                Console.WriteLine(textEnemy);
+                logger.LogMessageOnlyText(textEnemy);
             }
-
-            Console.WriteLine("========================================");
         }
 
         public static void ResetStats()
@@ -91,6 +95,29 @@ namespace HeroEngine.Utils
             {
                 heroNames[i] = null;
                 heroDamages[i] = 0;
+            }
+        }
+        public static string GetParticipants()
+        {
+            string names = "";
+            for (int i = 0; i < heroCount; i++)
+            {
+                names += heroNames[i] + (i < heroCount - 1 ? ", " : "");
+            }
+            return names;
+        }
+        public static void SaveParticipants(Hero[] team, int count)
+        {
+            heroCount = 0;
+
+            for (int i = 0; i < count; i++)
+            {
+                if (team[i] != null)
+                {
+                    heroNames[heroCount] = team[i].Name;
+                    heroDamages[heroCount] = 0;
+                    heroCount++;
+                }
             }
         }
     }

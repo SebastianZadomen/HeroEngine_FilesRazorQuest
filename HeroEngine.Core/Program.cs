@@ -159,7 +159,21 @@ Necesitan de tu ayuda , elige tu clase : ";
     }
     public static void StartCombat(Hero[] playerTeam)
     {
+        CombatLog logger = new CombatLog();
+
         string path = @"..\..\..\Files\CombatLog.txt";
+        CombatUtils.SaveParticipants(playerTeam, CountPlayer);
+
+        string space = "====================================================";
+        string date = "Fecha : " + DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss");
+        string participants = "PARTICIPANTES : " + CombatUtils.GetParticipants();
+
+        logger.LogMessageOnlyText(space);
+        logger.LogMessageOnlyText(date);
+        logger.LogMessageOnlyText(participants);
+        logger.LogMessageOnlyText(space);
+
+
 
         if (CountPlayer == 0)
         {
@@ -171,7 +185,7 @@ Necesitan de tu ayuda , elige tu clase : ";
         Console.Clear();
         Console.WriteLine("¡TE ACERCAS AL CAMPO DE BATALLA! \n Recuerda que si tu equipo son mas de dos pelearas contra un jefe final ve preparado");
 
-        CombatLog logger = new CombatLog();
+       
         CombatUtils.ResetStats();
 
         int enemyCount = CountPlayer * 2;
@@ -198,16 +212,16 @@ Necesitan de tu ayuda , elige tu clase : ";
                     string minionName = GetRandomName("MINION", rnd);
                     enemies[i] = new Minion(minionName, 0);
 
-                    enemies[i].Skills[0] = new AttackSkills("Arañazo", RarityType.Comun, 5, 15, 10);
-                    enemies[i].Skills[1] = new AttackSkills("Golpe Cargado", RarityType.Comun, 5, 15, 12);
+                    enemies[i].Skills[0] = new AttackSkills("Arañazo", RarityType.Comun, 5, 15, 8);
+                    enemies[i].Skills[1] = new AttackSkills("Golpe Cargado", RarityType.Comun, 5, 15, 10);
                 }
                 else
                 {
                     string eliteName = GetRandomName("ELITE", rnd);
                     enemies[i] = new Elite(eliteName, 2);
 
-                    enemies[i].Skills[0] = new AttackSkills("Ataque Fuerte", RarityType.Comun, 8, 10, 18);
-                    enemies[i].Skills[1] = new AttackSkills("Cuchilla Mortal", RarityType.Raro, 12, 5, 35);
+                    enemies[i].Skills[0] = new AttackSkills("Ataque Fuerte", RarityType.Comun, 8, 10, 12);
+                    enemies[i].Skills[1] = new AttackSkills("Cuchilla Mortal", RarityType.Raro, 12, 5, 18);
                 }
             }
         }
@@ -269,7 +283,8 @@ Necesitan de tu ayuda , elige tu clase : ";
                         int lifeBefore = target.Health;
 
                         activeHeroes[slot].UseSkills(target, logger);
-
+                        int damage = lifeBefore - target.Health;
+                        CombatUtils.RegisterDamage(activeHeroes[slot].Name, damage);
 
                         Console.Clear();
                         logger.LogRoundStart(round);
@@ -337,7 +352,7 @@ Necesitan de tu ayuda , elige tu clase : ";
             Console.WriteLine("DERROTA... Tus héroes han caído ante la oscuridad.");
         }
 
-        CombatUtils.ShowCombatStats();
+        CombatUtils.ShowCombatStats(logger);
         logger.SaveToFile(path);
 
         Console.ReadKey();

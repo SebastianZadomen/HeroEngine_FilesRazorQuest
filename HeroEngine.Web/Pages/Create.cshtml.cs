@@ -1,5 +1,5 @@
 using HeroEngine.Model.Heroes;
-using HeroEngine.Web.Pages.Data;
+using HeroEngine.Web.Data;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
@@ -45,7 +45,7 @@ namespace HeroEngine.Web.Pages
                     break;
             }
 
-            GameData.HeroRegister.Add(newHero);
+            GameData.Repository.Add(newHero);
 
             return RedirectToPage("/Heroes");
         }

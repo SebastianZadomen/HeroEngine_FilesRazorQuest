@@ -1,0 +1,15 @@
+[
+  {
+    "$type": "warrior",
+    "Armor": 15,
+    "Energy": 100,
+    "Name": "Garen",
+    "Level": 5
+  },
+  {
+    "$type": "mage",
+    "Mana": 80,
+    "Name": "Lux",
+    "Level": 3
+  }
+]

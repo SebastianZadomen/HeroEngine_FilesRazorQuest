@@ -19,6 +19,7 @@ namespace HeroEngine.Model.Heroes
         public int Energy { get; set; }
         public int EnergyMax => EnergyBase + (EnergyScaled * Level);
 
+        public Warrior() { }
         public Warrior(string name) : base(name)
         {
             Energy = EnergyMax;

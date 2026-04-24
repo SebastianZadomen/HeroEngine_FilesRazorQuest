@@ -13,6 +13,7 @@ namespace HeroEngine.Model.Enemy
 
         public Minion(string name, int level) : base(name, level)
         {
+            
         }
         public Minion(string name) : base(name)
         {
