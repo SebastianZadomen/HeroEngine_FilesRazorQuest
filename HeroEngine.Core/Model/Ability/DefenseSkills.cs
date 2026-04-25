@@ -11,6 +11,7 @@ namespace HeroEngine.Model.Ability
     public class DefenseSkills : Skill
     {
         public int Defense { get; set; }
+        public DefenseSkills() : base() { }
         public DefenseSkills(string name, RarityType type, int cost, int pointUse, int healing) : base(name, type, cost, pointUse)
         {
             Defense = healing;
@@ -24,7 +25,7 @@ namespace HeroEngine.Model.Ability
 
         }
 
-        public override void AbilityActivation(Hero target, Hero caster, CombatLog log)
+        public override void AbilityActivation(Hero target, Hero caster, CombatLog log, double probability)
         {
             log.LogMessage("======================================================================");
             log.LogMessage("[Defense]");

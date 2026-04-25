@@ -1,4 +1,5 @@
-﻿using HeroEngine.Utils;
+﻿using HeroEngine.Model.Ability;
+using HeroEngine.Utils;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,10 +25,15 @@ namespace HeroEngine.Model.Heroes
         public Mage(string name, int level) : base(name, level)
         {
             Mana = ManaMax;
+            this.AddSkill(new AttackSkills("Bola de Fuego", RarityType.Comun, 15, 5, 20));
+
         }
+        public Mage() : base() { }
+
         public Mage(string name) : base(name)
         {
             Mana = ManaMax;
+            this.AddSkill(new AttackSkills("Bola de Fuego", RarityType.Comun, 15, 5, 20));
 
         }
 

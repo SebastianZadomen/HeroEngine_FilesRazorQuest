@@ -1,0 +1,83 @@
+[
+  {
+    "$type": "warrior",
+    "Armor": 12,
+    "Energy": 130,
+    "EnergyMax": 130,
+    "Name": "Garem",
+    "Defense": 0,
+    "Skills": [
+      {
+        "$type": "attack",
+        "Damage": 20,
+        "Name": "Golpe de espada",
+        "Rarity": 0,
+        "Type": 0
+      },
+      null,
+      null,
+      null
+    ],
+    "Level": 3,
+    "Health": 175,
+    "Experience": 0,
+    "IsAlive": true,
+    "Damage": 20
+  },
+  {
+    "$type": "mage",
+    "ArcaneLevel": 8,
+    "ManaMax": 140,
+    "Mana": 140,
+    "Name": "Lux",
+    "Defense": 0,
+    "Skills": [
+      {
+        "$type": "attack",
+        "Damage": 20,
+        "Name": "Bola de Fuego",
+        "Rarity": 0,
+        "Type": 0
+      },
+      {
+        "$type": "attack",
+        "Damage": 20,
+        "Name": "Golpe de espada",
+        "Rarity": 0,
+        "Type": 0
+      },
+      null,
+      null
+    ],
+    "Level": 4,
+    "Health": 200,
+    "Experience": 0,
+    "IsAlive": true,
+    "Damage": 25
+  },
+  {
+    "$type": "mage",
+    "ArcaneLevel": 8,
+    "ManaMax": 140,
+    "Mana": 140,
+    "Name": "Ziggs",
+    "Defense": 0,
+    "Skills": [
+      {
+        "$type": "attack",
+        "Damage": 20,
+        "Name": "Bola de Fuego",
+        "Rarity": 0,
+        "Type": 0
+      },
+      null,
+      null,
+      null
+    ],
+    "Level": 4,
+    "Health": 200,
+    "Experience": 0,
+    "IsAlive": true,
+    "Damage": 25
+  }
+]

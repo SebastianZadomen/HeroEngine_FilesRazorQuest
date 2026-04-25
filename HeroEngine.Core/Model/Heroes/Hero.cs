@@ -1,17 +1,21 @@
-﻿using System;
+﻿using HeroEngine.Model.Ability;
+using HeroEngine.Utils;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Reflection.Metadata.Ecma335;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.Channels;
 using System.Threading.Tasks;
-using HeroEngine.Model.Ability;
-using HeroEngine.Utils;
 
 namespace HeroEngine.Model.Heroes
 {
+    [JsonDerivedType(typeof(Warrior), "warrior")]
+    [JsonDerivedType(typeof(Mage), "mage")]
+    [JsonDerivedType(typeof(Rogue), "rogue")]
     public abstract class Hero
     {
         public const int DamageBase = 5;
@@ -60,8 +64,10 @@ namespace HeroEngine.Model.Heroes
             Defense = 0;
 
         }
-    
-        public Hero(string name) : this(name, 0)
+        protected Hero() {
+            Health = HealthMax;
+        }
+        protected Hero(string name) : this(name, 0)
         {
             Defense = 0;
         }
@@ -93,10 +99,13 @@ namespace HeroEngine.Model.Heroes
             log.LogMessage(damageCritical.Equals(Damage) ? $"Inflige {damageCritical} de daño.(Golpe normal)" : $"Inflige {damageCritical} de daño.(GolpeCritico)");
             return damageCritical;
         }
-        public void AddExperience(int expAdd)
+        public void AddExperience(int expAdd, double multiplier)
         {
-            _exp += expAdd; 
+            double expSet = (double)expAdd * multiplier; 
 
+            _exp += (int)expSet;
+
+            Console.WriteLine($"Has recibido {(int)expSet} exp || Tienes {Experience}/{ExpMax} exp");
            
             while (_exp >= ExpMax)
             {
@@ -184,7 +193,7 @@ namespace HeroEngine.Model.Heroes
 
         }
 
-        public void UseSkills(Hero target, CombatLog log)
+        public void UseSkills(Hero target, CombatLog log, double probability)
         {
             OrderSkills();
             ShowSkills();
@@ -211,12 +220,13 @@ namespace HeroEngine.Model.Heroes
                     }
                     else
                     {
-                        Skills[index].AbilityActivation(target, this, log);
+                        Skills[index].AbilityActivation(target, this, log, probability);
                         validSelection = true;
                     }
                 }
             } while (!validSelection);
         }
+      
 
 
         public void OrderSkills()

@@ -1,0 +1,138 @@
+﻿@page
+@model HeroEngine.Web.Pages.StatsModel
+@{
+    ViewData["Title"] = "Estadísticas";
+}
+
+<div class="container mt-4">
+    <div class="border-bottom mb-4 pb-2">
+        <h1 class="text-center text-primary mb-4">Estadísticas del Juego</h1>
+    </div>
+
+    <div class="row mb-4">
+        <div class="col-md-6">
+            <h3>Héroes por Clase</h3>
+            <table class="table table-bordered table-striped">
+                <thead class="table-dark">
+                    <tr>
+                        <th>Clase</th>
+                        <th>Cantidad</th>
+                        <th>Porcentaje</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @{
+                        int totalH = 0;
+                        foreach (var cantidad in Model.HeroDistribution.Values)
+                        {
+                            totalH = totalH + cantidad;
+                        }
+                    }
+
+                    @foreach (var entry in Model.HeroDistribution)
+                    {
+                        double porcentaje = 0;
+                        if (totalH > 0)
+                        {
+                            double division = (double)entry.Value / totalH;
+                            porcentaje = division * 100;
+                        }
+
+                        <tr>
+                            <td><strong>@entry.Key</strong></td>
+                            <td>@entry.Value</td>
+                            <td>@Math.Round(porcentaje)%</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+
+        <div class="col-md-6">
+            <h3>Tipos de Habilidades</h3>
+            <table class="table table-bordered table-striped">
+                <thead class="table-dark">
+                    <tr>
+                        <th>Tipo</th>
+                        <th>Total</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var skill in Model.CommonAbilities)
+                    {
+                        <tr>
+                            <td>@skill.Key</td>
+                            <td>@skill.Value</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="mb-4 p-3 border rounded bg-light">
+        <h3>Top 3 Héroes (Nivel más alto)</h3>
+        <ul class="list-group">
+            @foreach (var hero in Model.Top3Heroes)
+            {
+                <li class="list-group-item d-flex justify-content-between">
+                    <span>@hero.Name</span>
+                    <span>Nivel @hero.Level</span>
+                </li>
+            }
+        </ul>
+    </div>
+
+    <div class="mb-4">
+        <div class="d-flex justify-content-between align-items-center mb-2">
+            <h3>Historial de Combates</h3>
+            
+            <form method="get" class="d-flex align-items-center">
+                <label class="me-2">Filtrar por:</label>
+                <select asp-for="ResultFilter" name="ResultFilter" class="form-select form-select-sm w-auto">
+                    <option value="">Ver Todos</option>
+                    <option value="Victoria">Victorias</option>
+                    <option value="Derrota">Derrotas</option>
+                </select>
+                <button type="submit" class="btn btn-primary btn-sm ms-2">Filtrar</button>
+            </form>
+        </div>
+
+        <table class="table table-striped border">
+            <thead class="table-dark">
+                <tr>
+                    <th>Héroes</th>
+                    <th>Enemigos</th>
+                    <th>Resultado</th>
+                    <th>Rondas</th>
+                    <th>MVP</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var match in Model.FilteredCombats)
+                {
+                    <tr>
+                        <td>@string.Join(" - ", match.HeroesNames)</td>
+                        <td>@string.Join(" - ", match.EnemiesNames)</td>
+                        <td>
+                            @if (match.Result == "Victoria")
+                            {
+                                <span class="text-success fw-bold">Victoria</span>
+                            }
+                            else
+                            {
+                                <span class="text-danger fw-bold">Derrota</span>
+                            }
+                        </td>
+                        <td>@match.TotalRounds</td>
+                        <td>@match.MVP</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+
+    <div class="mt-4">
+        <a asp-page="/Index" class="btn btn-secondary">Volver al Inicio</a>
+    </div>
+</div>

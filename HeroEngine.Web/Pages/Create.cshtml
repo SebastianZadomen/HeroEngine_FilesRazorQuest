@@ -1,0 +1,37 @@
+﻿@page
+@model HeroEngine.Web.Pages.CreateModel
+@{
+    ViewData["Title"] = "Crear Héroe";
+}
+
+<div class="card shadow p-4 mt-4 w-50 mx-auto">
+    <h2 class="text-center text-primary mb-4">Reclutar Nuevo Héroe</h2>
+
+    <form method="post">
+        
+        <div class="mb-3">
+            <label asp-for="HeroName" class="form-label fw-bold">Nombre del Héroe</label>
+            <input asp-for="HeroName" class="form-control" placeholder="Ejemplo : Garen" required />
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="HeroLevel" class="form-label fw-bold">Nivel Inicial</label>
+            <input asp-for="HeroLevel" type="number" min="0" max="100" class="form-control" />
+        </div>
+
+        <div class="mb-4">
+            <label asp-for="HeroClass" class="form-label fw-bold">Clase</label>
+            <select asp-for="HeroClass" class="form-select">
+                <option value="Warrior">Guerrero</option>
+                <option value="Mage">Mago</option>
+                <option value="Rogue">Bandido</option>
+            </select>
+        </div>
+
+        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+            <a asp-page="/Heroes" class="btn btn-outline-secondary">Cancelar</a>
+            <button type="submit" class="btn btn-success">Reclutar</button>
+        </div>
+
+    </form>
+</div>

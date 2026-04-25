@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<GameConfig xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <LevelMultiplier>1.15</LevelMultiplier>
+  <CriticalHitChance>0.2</CriticalHitChance>
+  <MaxCombatRounds>10</MaxCombatRounds>
+  <MaxHeroesPerBattle>0</MaxHeroesPerBattle>
+</GameConfig>

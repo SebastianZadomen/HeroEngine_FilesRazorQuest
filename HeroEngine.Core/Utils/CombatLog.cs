@@ -20,11 +20,11 @@ namespace HeroEngine.Utils
         {
           
             string header = $@"
-====================================================================================================
+======================================================================
 
         BATTLE LOG - Round {round}
 
-====================================================================================================";
+======================================================================";
 
             _logContent.AppendLine(header);
             Console.WriteLine(header);
@@ -43,11 +43,11 @@ namespace HeroEngine.Utils
         public void LogRoundEnd(int remainingEnemies, int heroesStanding)
         {
             string countEnemiesHeroes = $@"
-====================================================================================================
+========================================================================================================
 
     Remaining enemies: {remainingEnemies}       |           Heroes standing: {heroesStanding}
 
-====================================================================================================
+=========================================================================================================
 ";
 
             _logContent.AppendLine(countEnemiesHeroes);
@@ -59,6 +59,12 @@ namespace HeroEngine.Utils
         {
             _logContent.AppendLine(message);
             Console.WriteLine(message);
+        }
+
+        public void LogMessageOnlyText(string message)
+        {
+            _logContent.AppendLine(message);
+
         }
         public void SaveToFile(string filename)
         {

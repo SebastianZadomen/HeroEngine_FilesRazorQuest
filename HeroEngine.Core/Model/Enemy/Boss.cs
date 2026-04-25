@@ -14,22 +14,26 @@ namespace HeroEngine.Model.Enemy
     {
         public Boss(string name, int level) : base(name, level)
         {
+            ExperienceReward = 15 + (15 * Level);
+
+
         }
         public Boss(string name) : base(name)
         {
+            ExperienceReward = 15 + (15 * Level);
         }
         public virtual bool DropKey()
         {
             return new Random().Next(0, 5) == 2;
         }
-        public override void ActionsPerTurn(Hero[] teamPlayer, CombatLog log)
+        public override void ActionsPerTurn(Hero[] teamPlayer, CombatLog log, double probability)
         {
             ReduceCooldowns();
             int heroTarget = ComprovationHpTeamPlayer(teamPlayer);
-            EnemyUseSkills(teamPlayer[heroTarget], log);
+            EnemyUseSkills(teamPlayer[heroTarget], log, probability);
         }
 
-        public override bool EnemyUseSkills(Hero player,CombatLog log )
+        public override bool EnemyUseSkills(Hero player,CombatLog log,double probability)
         {
             if (Health < (HealthMax * 0.20))
             {
@@ -41,14 +45,14 @@ namespace HeroEngine.Model.Enemy
 
                         ControlPositionAbilityCooldowns(i + 1);
 
-                        Skills[i].AbilityActivation(this, this, log);
+                        Skills[i].AbilityActivation(this, this, log, probability);
 
                         return true; 
                     }
                 }
             }
 
-            return base.EnemyUseSkills(player,log);
+            return base.EnemyUseSkills(player,log, probability);
         }
     }
 }

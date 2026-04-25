@@ -1,0 +1,35 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<div class="card p-3">
+    <h1 class="text-center text-primary mb-4">Bienvenido a Hero Engine</h1>
+    <p>El<a href="https://github.com/SebastianZadomen/HeroEngine-SebastianZadomen.git"> Reino de Bytecroft</a> ha sido invadido por las fuerzas del Bug Primordial. El Consejo de Desarrolladores ha convocado los tres grandes órdenes de héroes para defender el reino: </p>
+    <ul>
+        <li>Guerreros</li>
+        <li>Magos</li>
+        <li>Bandidos</li>
+    </ul>
+</div>
+<div class="card p-3">
+    <h2>Heroes Registrados</h2>
+    <table class="table table-striped table-hover border">
+        <thead class="table-dark">
+            <tr>
+                <th>Clase</th>
+                <th>Nombre</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var hero in Model.HeroRegister)
+            {
+                <tr>
+                    <th>@hero.GetType().Name</th>
+                    <th>@hero.Name</th>
+                </tr>
+            }  
+        </tbody>
+</table>
+</div>

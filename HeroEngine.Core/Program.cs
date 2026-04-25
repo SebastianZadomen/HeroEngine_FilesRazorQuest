@@ -1,10 +1,14 @@
-﻿using HeroEngine.Model.Ability;
+﻿using HeroEngine.Core.Data;
+using HeroEngine.Data;
+using HeroEngine.Model.Ability;
 using HeroEngine.Model.Enemy;
 using HeroEngine.Model.Heroes;
 using HeroEngine.Utils;
 using System;
 using System.Runtime.Intrinsics.Arm;
 using System.Security.Cryptography.X509Certificates;
+
+
 public class HeroEngineProgram
 {
     public static int CountPlayer = 0;
@@ -124,7 +128,6 @@ Necesitan de tu ayuda , elige tu clase : ";
         Console.WriteLine(msg);
         Hero newHero = null;
         bool valid = false;
-        AttackSkills atkBase = null;
         while (!valid)
         {
             Console.Write("\nSelecciona tu clase (1-3): ");
@@ -138,17 +141,14 @@ Necesitan de tu ayuda , elige tu clase : ";
             {
                 case "1":
                     newHero = new Warrior(nameChoice, 1);
-                    atkBase = new AttackSkills("Golpe de espada", RarityType.Comun, 15, 5, 20);
                     valid = true;
                     break;
                 case "2":
                     newHero = new Mage(nameChoice, 1);
-                    atkBase = new AttackSkills("Bola de fuego", RarityType.Comun, 20, 8, 15);
                     valid = true;
                     break;
                 case "3":
                     newHero = new Rogue(nameChoice, 1);
-                    atkBase = new AttackSkills("Ataque rapido", RarityType.Comun, 12, 3, 25);
                     valid = true;
                     break;
                 default:
@@ -160,12 +160,30 @@ Necesitan de tu ayuda , elige tu clase : ";
         Console.WriteLine($"\n¡ {newHero.Name}  se ha unido a tus filas! \n Presiona una tecla para continuar.....");
         Console.ReadKey();
         
-        newHero.AddSkill(atkBase);
         return newHero;
     }
     public static void StartCombat(Hero[] playerTeam)
     {
+        ConfigManager configManager = new ConfigManager();
+        GameConfig config = configManager.LoadConfig();
+
+        CombatLog logger = new CombatLog();
+
+        int maxRounds = config.MaxCombatRounds;
+
         string path = @"..\..\..\Files\CombatLog.txt";
+        CombatUtils.SaveParticipants(playerTeam, CountPlayer);
+
+        string space = "====================================================";
+        string date = "Fecha : " + DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss");
+        string participants = "PARTICIPANTES : " + CombatUtils.GetParticipants();
+
+        logger.LogMessageOnlyText(space);
+        logger.LogMessageOnlyText(date);
+        logger.LogMessageOnlyText(participants);
+        logger.LogMessageOnlyText(space);
+
+
 
         if (CountPlayer == 0)
         {
@@ -177,7 +195,7 @@ Necesitan de tu ayuda , elige tu clase : ";
         Console.Clear();
         Console.WriteLine("¡TE ACERCAS AL CAMPO DE BATALLA! \n Recuerda que si tu equipo son mas de dos pelearas contra un jefe final ve preparado");
 
-        CombatLog logger = new CombatLog();
+       
         CombatUtils.ResetStats();
 
         int enemyCount = CountPlayer * 2;
@@ -204,16 +222,16 @@ Necesitan de tu ayuda , elige tu clase : ";
                     string minionName = GetRandomName("MINION", rnd);
                     enemies[i] = new Minion(minionName, 0);
 
-                    enemies[i].Skills[0] = new AttackSkills("Arañazo", RarityType.Comun, 5, 15, 10);
-                    enemies[i].Skills[1] = new AttackSkills("Golpe Cargado", RarityType.Comun, 5, 15, 12);
+                    enemies[i].Skills[0] = new AttackSkills("Arañazo", RarityType.Comun, 5, 15, 8);
+                    enemies[i].Skills[1] = new AttackSkills("Golpe Cargado", RarityType.Comun, 5, 15, 10);
                 }
                 else
                 {
                     string eliteName = GetRandomName("ELITE", rnd);
                     enemies[i] = new Elite(eliteName, 2);
 
-                    enemies[i].Skills[0] = new AttackSkills("Ataque Fuerte", RarityType.Comun, 8, 10, 18);
-                    enemies[i].Skills[1] = new AttackSkills("Cuchilla Mortal", RarityType.Raro, 12, 5, 35);
+                    enemies[i].Skills[0] = new AttackSkills("Ataque Fuerte", RarityType.Comun, 8, 10, 12);
+                    enemies[i].Skills[1] = new AttackSkills("Cuchilla Mortal", RarityType.Raro, 12, 5, 18);
                 }
             }
         }
@@ -224,12 +242,12 @@ Necesitan de tu ayuda , elige tu clase : ";
 
         int round = 1;
 
-        while (HasAliveEntities(playerTeam, CountPlayer) && HasAliveEntities(enemies, enemyCount))
+        while (HasAliveEntities(playerTeam, CountPlayer) && HasAliveEntities(enemies, enemyCount) && round < maxRounds)
         {
             logger.LogRoundStart(round);
 
             FillHeroes(playerTeam, activeHeroes, CountPlayer);
-            FillEnemies(enemies, activeEnemies, enemyCount, logger);
+            FillEnemies(enemies, activeEnemies, enemyCount, logger, config.LevelMultiplier, activeHeroes);
 
             for (int slot = 0; slot < 2; slot++)
             {
@@ -274,8 +292,9 @@ Necesitan de tu ayuda , elige tu clase : ";
 
                         int lifeBefore = target.Health;
 
-                        activeHeroes[slot].UseSkills(target, logger);
-
+                        activeHeroes[slot].UseSkills(target, logger, config.CriticalHitChance);
+                        int damage = lifeBefore - target.Health;
+                        CombatUtils.RegisterDamage(activeHeroes[slot].Name, damage);
 
                         Console.Clear();
                         logger.LogRoundStart(round);
@@ -283,7 +302,7 @@ Necesitan de tu ayuda , elige tu clase : ";
                         bool killed = !target.IsAlive;
 
 
-                        logger.LogAction("HERO", activeHeroes[slot].Name, "Acción de combate", target.Name, lifeBefore-target.Health, killed);
+                        logger.LogAction("HERO", activeHeroes[slot].Name, "Acción de combate", target.Name, lifeBefore - target.Health, killed);
                         logger.LogMessage("======================================================================");
 
                         if (killed)
@@ -307,7 +326,7 @@ Necesitan de tu ayuda , elige tu clase : ";
                     }
                 }
 
-       
+
                 if (activeEnemies[slot] != null && activeEnemies[slot].IsAlive)
                 {
                     Hero targetHero = GetFirstAliveHero(activeHeroes);
@@ -316,9 +335,9 @@ Necesitan de tu ayuda , elige tu clase : ";
 
                         int lifeHeroBefore = targetHero.Health;
 
-                        activeEnemies[slot].ActionsPerTurn(activeHeroes, logger);
+                        activeEnemies[slot].ActionsPerTurn(activeHeroes, logger, 0.1);
 
-                        logger.LogAction("ENEMY", activeEnemies[slot].Name, "Acción de combate", targetHero.Name, lifeHeroBefore-targetHero.Health, !targetHero.IsAlive);
+                        logger.LogAction("ENEMY", activeEnemies[slot].Name, "Acción de combate", targetHero.Name, lifeHeroBefore - targetHero.Health, !targetHero.IsAlive);
                     }
                 }
             }
@@ -331,6 +350,10 @@ Necesitan de tu ayuda , elige tu clase : ";
             logger.SaveToFile(path);
             Console.WriteLine("\nPulsa Enter para la siguiente ronda...");
             Console.ReadKey();
+            if (round < maxRounds)
+            {
+                Console.WriteLine("Has llegado al maximo de rondas configurado");
+            }
         }
 
         Console.Clear();
@@ -343,8 +366,9 @@ Necesitan de tu ayuda , elige tu clase : ";
             Console.WriteLine("DERROTA... Tus héroes han caído ante la oscuridad.");
         }
 
-        CombatUtils.ShowCombatStats();
-        logger.SaveToFile(path);
+        CombatUtils.ShowCombatStats(logger, path, enemies,  round);
+
+
 
         Console.ReadKey();
     }
@@ -404,26 +428,32 @@ Necesitan de tu ayuda , elige tu clase : ";
                     {
                         active[i] = reserves[j];
                         Console.WriteLine($"{active[i].Name} entra al campo de batalla.");
-                        break;
+                        j = reserveCount;
+                        
                     }
                 }
             }
         }
     }
 
-    public static void FillEnemies(Enemy[] reserves, Enemy[] active, int reserveCount, CombatLog logger)
+    public static void FillEnemies(Enemy[] reserves, Enemy[] active, int reserveCount, CombatLog logger, double expMultiplier, Hero[] heroActive)
     {
         for (int i = 0; i < 2; i++)
         {
             if (active[i] == null || !active[i].IsAlive)
             {
+                for (int h = 0; h < heroActive.Length - 1 && active[i] != null && !active[i].IsAlive; h++)
+                {
+                    heroActive[h].AddExperience(active[i].ExperienceReward,expMultiplier);
+                }
                 for (int j = 0; j < reserveCount; j++)
                 {
                     if (reserves[j] != null && reserves[j].IsAlive && reserves[j] != active[0] && reserves[j] != active[1])
                     {
+                        
                         active[i] = reserves[j];
                         logger.LogAction("SISTEMA", active[i].Name, "Aparece desde las sombras", "Campo", 0);
-                        break; 
+                        j = reserveCount; 
                     }
                 }
             }

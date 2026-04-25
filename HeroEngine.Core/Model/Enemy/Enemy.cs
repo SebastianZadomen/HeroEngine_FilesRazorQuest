@@ -20,13 +20,13 @@ namespace HeroEngine.Model.Enemy
         }
         public Enemy(string name, int level) : base(name, level)
         {
-
+           
         }
         public virtual bool DropKey()
         {
             return new Random().Next(0, 12) == 4;
         }
-        public abstract void ActionsPerTurn(Hero[] teamPlayer, CombatLog log);
+        public abstract void ActionsPerTurn(Hero[] teamPlayer, CombatLog log, double probability);
         public bool ControlPositionAbilityCooldowns(int positionUse)
         {
             int index = positionUse - 1;
@@ -92,7 +92,7 @@ namespace HeroEngine.Model.Enemy
 
             return positionPlayerTarget;
         }
-        public virtual bool EnemyUseSkills(Hero player, CombatLog log)
+        public virtual bool EnemyUseSkills(Hero player, CombatLog log, double probability)
         {
             
             for (int i = Skills.Length - 1; i >= 0; i--)
@@ -103,7 +103,7 @@ namespace HeroEngine.Model.Enemy
                     {
                         Console.WriteLine($"¡{Name} ve la oportunidad y remata a {player.Name}!");
                         ControlPositionAbilityCooldowns(i + 1);
-                        Skills[i].AbilityActivation(player, this,log);
+                        Skills[i].AbilityActivation(player, this,log, probability);
                         return true; 
                     }
                 }
@@ -116,7 +116,7 @@ namespace HeroEngine.Model.Enemy
                 {
                     Console.WriteLine($"{Name} usa su mejor habilidad disponible: {Skills[i].Name}.");
                     ControlPositionAbilityCooldowns(i + 1);
-                    Skills[i].AbilityActivation(player, this, log);
+                    Skills[i].AbilityActivation(player, this, log, probability);
                     return true; 
                 }
             }

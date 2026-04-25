@@ -12,6 +12,7 @@ namespace HeroEngine.Model.Ability
     public class SupportSkills : Skill
     {
         public int Healing { get; set; }
+        public SupportSkills() : base() { }
         public SupportSkills(string name, RarityType type, int cost, int pointUse, int healing) : base(name, type, cost, pointUse)
         {
             Healing = healing;
@@ -24,7 +25,7 @@ namespace HeroEngine.Model.Ability
             Type = TypeSkills.Soporte;
         }
 
-        public override void AbilityActivation(Hero target, Hero caster, CombatLog log)
+        public override void AbilityActivation(Hero target, Hero caster, CombatLog log, double probability)
         {
             log.LogMessage("======================================================================");
             log.LogMessage("[Support]");

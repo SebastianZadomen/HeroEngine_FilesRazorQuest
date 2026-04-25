@@ -1,4 +1,5 @@
-﻿using HeroEngine.Utils;
+﻿using HeroEngine.Model.Ability;
+using HeroEngine.Utils;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,13 +21,17 @@ namespace HeroEngine.Model.Heroes
         public int SneakAttack => SneakAttackScale * Level ;
         public int Energy { get; set; }
         public int EnergyMax => EnergyBase + (EnergyScaled * Level);
+        public Rogue() : base() { }
         public Rogue(string name) : base(name)
         {
             Energy = EnergyMax;
+            this.AddSkill(new AttackSkills("Golpe de Daga", RarityType.Comun, 15, 5, 20));
+
         }
 
         public Rogue(string name, int level) : base(name, level)
         {
+            this.AddSkill(new AttackSkills("Golpe de Daga", RarityType.Comun, 15, 5, 20));
             Energy = EnergyMax;
             Dagas = 0;
         }

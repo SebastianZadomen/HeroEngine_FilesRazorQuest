@@ -1,13 +1,17 @@
 ﻿using HeroEngine.Model.Heroes;
+using HeroEngine.Utils;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
-using HeroEngine.Utils;
 
 namespace HeroEngine.Model.Ability
 {
+    [JsonDerivedType(typeof(AttackSkills), "attack")]
+    [JsonDerivedType(typeof(SupportSkills), "support")]
+    [JsonDerivedType(typeof(DefenseSkills), "defense")]
     public abstract class Skill
     {
       
@@ -27,7 +31,7 @@ namespace HeroEngine.Model.Ability
             PointsUse = pointUse;
             PointUseBase = PointsUse;
         }
-
+        protected Skill() { }
         public Skill(string name)
         {
             Name = name;
@@ -36,7 +40,7 @@ namespace HeroEngine.Model.Ability
             PointsUse = CalculatedPointUse(Rarity);
             PointUseBase = PointsUse;
         }
-        public abstract void AbilityActivation(Hero target, Hero caster, CombatLog log);
+        public abstract void AbilityActivation(Hero target, Hero caster, CombatLog log, double probability);
         public static RarityType RarityTypeRandom()
         {
             var random = new Random();
