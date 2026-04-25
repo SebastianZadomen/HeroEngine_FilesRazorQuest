@@ -78,8 +78,9 @@ namespace HeroEngine.Web.Pages
 
                 for (int i = 1; i < lines.Length; i++)
                 {
-                    string line = lines[i];
-                    if (string.IsNullOrWhiteSpace(line)) continue;
+                    if (!string.IsNullOrWhiteSpace(line))
+                    {
+                        string[] data = line.Split(',');
 
                     string[] data = line.Split(',');
                     if (data.Length >= 7)
@@ -100,6 +101,7 @@ namespace HeroEngine.Web.Pages
                         combat.MVP = data[6];
 
                         list.Add(combat);
+                    }
                     }
                 }
             }
