@@ -25,7 +25,7 @@ namespace HeroEngine.Model.Ability
             Type = TypeSkills.Soporte;
         }
 
-        public override void AbilityActivation(Hero target, Hero caster, CombatLog log)
+        public override void AbilityActivation(Hero target, Hero caster, CombatLog log, double probability)
         {
             log.LogMessage("======================================================================");
             log.LogMessage("[Support]");

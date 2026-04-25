@@ -5,40 +5,77 @@
 }
 
 <div class="container mt-4">
-    <div class="d-flex justify-content-between align-items-center mb-4">
-        <h1>Combates</h1>
-        <a asp-page-handler="Download" class="btn btn-success">
-            <i class="bi bi-download"></i> Descargar CSV Completo
+    <div class="border-bottom mb-4 pb-2 d-flex justify-content-between align-items-center">
+        <h1 class="text-primary mb-0">Gestión de <strong>Archivos y Datos</strong></h1>
+        <a asp-page-handler="Download" class="btn btn-outline-success">
+            Descargar CSV Completo
         </a>
     </div>
 
-    <table class="table table-dark table-striped table-hover">
-        <thead>
-            <tr>
-                <th>Héroes</th>
-                <th>Enemigos</th>
-                <th>Resultado</th>
-                <th>Rondas</th>
-                <th>Daño Total</th>
-                <th>MVP</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var match in Model.LastMatches)
-            {
+    <div class="card p-3 mb-4 shadow-sm">
+        <h2 class="mb-3">Últimos Combates Registrados</h2>
+        <table class="table table-striped table-hover border text-center">
+            <thead class="table-dark">
                 <tr>
-                    <td>@string.Join(", ", match.HeroesNames)</td>
-                    <td>@string.Join(", ", match.EnemiesNames)</td>
-                    <td>
-                        <span class="badge @(match.Result == "Victoria" ? "bg-success" : "bg-danger")">
-                            @match.Result
-                        </span>
-                    </td>
-                    <td>@match.TotalRounds</td>
-                    <td>@match.TotalDamage</td>
-                    <td class="text-warning">@match.MVP</td>
+                    <th>Héroes</th>
+                    <th>Enemigos</th>
+                    <th>Resultado</th>
+                    <th>Rondas</th>
+                    <th>Daño</th>
+                    <th>MVP</th>
                 </tr>
-            }
-        </tbody>
-    </table>
+            </thead>
+            <tbody>
+                @foreach (var match in Model.LastMatches)
+                {
+                    <tr>
+                        <td>@string.Join(", ", match.HeroesNames)</td>
+                        <td>@string.Join(", ", match.EnemiesNames)</td>
+                        <td>
+                            @if (match.Result == "Victoria")
+                            {
+                                <span class="text-success fw-bold">Victoria</span>
+                            }
+                            else
+                            {
+                                <span class="text-danger fw-bold">Derrota</span>
+                            }
+                        </td>
+                        <td>@match.TotalRounds</td>
+                        <td>@match.TotalDamage</td>
+                        <td class="fw-bold text-primary">@match.MVP</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+
+    <div class="card shadow-sm p-4 mt-4">
+        <h2 class="text-primary mb-4">Configuración del Sistema</h2>
+        
+        <form method="post" asp-page-handler="SaveConfig">
+            <div class="row g-3">
+                <div class="col-md-4">
+                    <label asp-for="Config.LevelMultiplier" class="form-label fw-bold">Mult. Experiencia</label>
+                    <input asp-for="Config.LevelMultiplier" class="form-control" type="number" step="0.1" />
+                </div>
+                <div class="col-md-4">
+                    <label asp-for="Config.CriticalHitChance" class="form-label fw-bold">Prob. Crítico (0-1)</label>
+                    <input asp-for="Config.CriticalHitChance" class="form-control" type="number" step="0.01" />
+                </div>
+                <div class="col-md-4">
+                    <label asp-for="Config.MaxCombatRounds" class="form-label fw-bold">Rondas Máximas</label>
+                    <input asp-for="Config.MaxCombatRounds" class="form-control" type="number" />
+                </div>
+            </div>
+
+            <div class="d-grid gap-2 d-md-flex justify-content-md-end mt-4">
+                <button type="submit" class="btn btn-success">Guardar Configuración</button>
+            </div>
+        </form>
+    </div>
+
+    <div class="mt-4">
+        <a asp-page="/Index" class="btn btn-secondary">Volver al Inicio</a>
+    </div>
 </div>

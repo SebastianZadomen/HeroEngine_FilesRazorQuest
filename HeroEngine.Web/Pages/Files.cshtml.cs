@@ -1,3 +1,4 @@
+using HeroEngine.Core.Data;
 using HeroEngine.Data;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -10,7 +11,8 @@ namespace HeroEngine.Web.Pages
 
         private string _csvPath = @"Data/Files/combat_stats.csv";
 
-
+        [BindProperty] 
+        public GameConfig Config { get; set; }
         public void OnGet()
         {
             if (System.IO.File.Exists(_csvPath))
@@ -43,6 +45,10 @@ namespace HeroEngine.Web.Pages
             {
                 throw new Exception("No se ha encontrado el archivo");
             }
+
+            ConfigManager manager = new ConfigManager();
+            Config = manager.LoadConfig();
+
         }
 
         public IActionResult OnGetDownload()
@@ -52,6 +58,13 @@ namespace HeroEngine.Web.Pages
             var fileBytes = System.IO.File.ReadAllBytes(_csvPath);
 
             return File(fileBytes, "text/csv", "combat_stats.csv");
+
+        }
+        public IActionResult OnPostSaveConfig()
+        {
+            ConfigManager manager = new ConfigManager();
+            manager.SaveConfig(Config);
+            return RedirectToPage(); 
         }
     }
 }

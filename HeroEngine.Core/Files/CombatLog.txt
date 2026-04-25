@@ -1,6 +1,6 @@
 ====================================================
-Fecha : 24/04/2026 21:07:36
-PARTICIPANTES : Darius
+Fecha : 25/04/2026 14:55:03
+PARTICIPANTES : Rammus
 ====================================================
 
 ======================================================================
@@ -8,41 +8,41 @@ PARTICIPANTES : Darius
         BATTLE LOG - Round 1
 
 ======================================================================
-  [SISTEMA]   Locusta  > Aparece desde las sombras  > Campo   -> 0 dmg
+  [SISTEMA]   Mrtirdelltigo  > Aparece desde las sombras  > Campo   -> 0 dmg
   [SISTEMA]   Heraldodeljuicio  > Aparece desde las sombras  > Campo   -> 0 dmg
 ======================================================================
 [Attack]
 Has decidido usar tu habilidad : Golpe de espada
 Daño : 20 , Costo Energia : 15 , Usos : 5/5
 ======================================================================
-Locusta ha recibido 20 de daño. 
-HP : 80/100
+Mrtirdelltigo ha recibido 24 de daño. 
+HP : 76/100
 
 ======================================================================
 
         BATTLE LOG - Round 1
 
 ======================================================================
-  [HERO]   Darius  > Acción de combate  > Locusta   -> 20 dmg
+  [HERO]   Rammus  > Acción de combate  > Mrtirdelltigo   -> 24 dmg
 ======================================================================
 ======================================================================
 [Attack]
 Has decidido usar tu habilidad : Arañazo
 Daño : 8 , Costo Energia : 5 , Usos : 15/15
 ======================================================================
-Darius ha recibido 8 de daño pero tu armadura te ha protegido 6 de daño
+Rammus ha recibido 8 de daño pero tu armadura te ha protegido 6 de daño
 HP : 123/125
 ======================================================================
-  [ENEMY]   Locusta  > Acción de combate  > Darius   -> 2 dmg
+  [ENEMY]   Mrtirdelltigo  > Acción de combate  > Rammus   -> 2 dmg
 ======================================================================
 [Attack]
 Has decidido usar tu habilidad : Ataque Fuerte
 Daño : 12 , Costo Energia : 8 , Usos : 10/10
 ======================================================================
-Darius ha recibido 12 de daño pero tu armadura te ha protegido 6 de daño
+Rammus ha recibido 12 de daño pero tu armadura te ha protegido 6 de daño
 HP : 117/125
 ======================================================================
-  [ENEMY]   Heraldodeljuicio  > Acción de combate  > Darius   -> 6 dmg
+  [ENEMY]   Heraldodeljuicio  > Acción de combate  > Rammus   -> 6 dmg
 
 ========================================================================================================
 
@@ -61,34 +61,34 @@ HP : 117/125
 Has decidido usar tu habilidad : Golpe de espada
 Daño : 20 , Costo Energia : 15 , Usos : 4/5
 ======================================================================
-Locusta ha recibido 20 de daño. 
-HP : 60/100
+Mrtirdelltigo ha recibido 20 de daño. 
+HP : 56/100
 
 ======================================================================
 
         BATTLE LOG - Round 2
 
 ======================================================================
-  [HERO]   Darius  > Acción de combate  > Locusta   -> 20 dmg
+  [HERO]   Rammus  > Acción de combate  > Mrtirdelltigo   -> 20 dmg
 ======================================================================
 ======================================================================
 [Attack]
 Has decidido usar tu habilidad : Arañazo
 Daño : 8 , Costo Energia : 5 , Usos : 14/15
 ======================================================================
-Darius ha recibido 8 de daño pero tu armadura te ha protegido 6 de daño
+Rammus ha recibido 8 de daño pero tu armadura te ha protegido 6 de daño
 HP : 115/125
 ======================================================================
-  [ENEMY]   Locusta  > Acción de combate  > Darius   -> 2 dmg
+  [ENEMY]   Mrtirdelltigo  > Acción de combate  > Rammus   -> 2 dmg
 ======================================================================
 [Attack]
 Has decidido usar tu habilidad : Ataque Fuerte
 Daño : 12 , Costo Energia : 8 , Usos : 9/10
 ======================================================================
-Darius ha recibido 12 de daño pero tu armadura te ha protegido 6 de daño
+Rammus ha recibido 12 de daño pero tu armadura te ha protegido 6 de daño
 HP : 109/125
 ======================================================================
-  [ENEMY]   Heraldodeljuicio  > Acción de combate  > Darius   -> 6 dmg
+  [ENEMY]   Heraldodeljuicio  > Acción de combate  > Rammus   -> 6 dmg
 
 ========================================================================================================
 
@@ -107,34 +107,34 @@ HP : 109/125
 Has decidido usar tu habilidad : Golpe de espada
 Daño : 20 , Costo Energia : 15 , Usos : 3/5
 ======================================================================
-Locusta ha recibido 20 de daño. 
-HP : 40/100
+Mrtirdelltigo ha recibido 20 de daño. 
+HP : 36/100
 
 ======================================================================
 
         BATTLE LOG - Round 3
 
 ======================================================================
-  [HERO]   Darius  > Acción de combate  > Locusta   -> 20 dmg
+  [HERO]   Rammus  > Acción de combate  > Mrtirdelltigo   -> 20 dmg
 ======================================================================
 ======================================================================
 [Attack]
 Has decidido usar tu habilidad : Arañazo
 Daño : 8 , Costo Energia : 5 , Usos : 13/15
 ======================================================================
-Darius ha recibido 8 de daño pero tu armadura te ha protegido 6 de daño
+Rammus ha recibido 8 de daño pero tu armadura te ha protegido 6 de daño
 HP : 107/125
 ======================================================================
-  [ENEMY]   Locusta  > Acción de combate  > Darius   -> 2 dmg
+  [ENEMY]   Mrtirdelltigo  > Acción de combate  > Rammus   -> 2 dmg
 ======================================================================
 [Attack]
 Has decidido usar tu habilidad : Ataque Fuerte
 Daño : 12 , Costo Energia : 8 , Usos : 8/10
 ======================================================================
-Darius ha recibido 12 de daño pero tu armadura te ha protegido 6 de daño
+Rammus ha recibido 12 de daño pero tu armadura te ha protegido 6 de daño
 HP : 101/125
 ======================================================================
-  [ENEMY]   Heraldodeljuicio  > Acción de combate  > Darius   -> 6 dmg
+  [ENEMY]   Heraldodeljuicio  > Acción de combate  > Rammus   -> 6 dmg
 
 ========================================================================================================
 
@@ -153,34 +153,34 @@ HP : 101/125
 Has decidido usar tu habilidad : Golpe de espada
 Daño : 20 , Costo Energia : 15 , Usos : 2/5
 ======================================================================
-Locusta ha recibido 20 de daño. 
-HP : 20/100
+Mrtirdelltigo ha recibido 24 de daño. 
+HP : 12/100
 
 ======================================================================
 
         BATTLE LOG - Round 4
 
 ======================================================================
-  [HERO]   Darius  > Acción de combate  > Locusta   -> 20 dmg
+  [HERO]   Rammus  > Acción de combate  > Mrtirdelltigo   -> 24 dmg
 ======================================================================
 ======================================================================
 [Attack]
 Has decidido usar tu habilidad : Arañazo
 Daño : 8 , Costo Energia : 5 , Usos : 12/15
 ======================================================================
-Darius ha recibido 8 de daño pero tu armadura te ha protegido 6 de daño
+Rammus ha recibido 8 de daño pero tu armadura te ha protegido 6 de daño
 HP : 99/125
 ======================================================================
-  [ENEMY]   Locusta  > Acción de combate  > Darius   -> 2 dmg
+  [ENEMY]   Mrtirdelltigo  > Acción de combate  > Rammus   -> 2 dmg
 ======================================================================
 [Attack]
 Has decidido usar tu habilidad : Ataque Fuerte
 Daño : 12 , Costo Energia : 8 , Usos : 7/10
 ======================================================================
-Darius ha recibido 12 de daño pero tu armadura te ha protegido 6 de daño
+Rammus ha recibido 12 de daño pero tu armadura te ha protegido 6 de daño
 HP : 93/125
 ======================================================================
-  [ENEMY]   Heraldodeljuicio  > Acción de combate  > Darius   -> 6 dmg
+  [ENEMY]   Heraldodeljuicio  > Acción de combate  > Rammus   -> 6 dmg
 
 ========================================================================================================
 
@@ -199,7 +199,7 @@ HP : 93/125
 Has decidido usar tu habilidad : Golpe de espada
 Daño : 20 , Costo Energia : 15 , Usos : 1/5
 ======================================================================
-Locusta ha recibido 20 de daño. 
+Mrtirdelltigo ha recibido 20 de daño. 
 HP : 0/100
 
 ======================================================================
@@ -207,17 +207,17 @@ HP : 0/100
         BATTLE LOG - Round 5
 
 ======================================================================
-  [HERO]   Darius  > Acción de combate  > Locusta   -> 20 dmg | DEFEATED!
+  [HERO]   Rammus  > Acción de combate  > Mrtirdelltigo   -> 12 dmg | DEFEATED!
 ======================================================================
 ======================================================================
 [Attack]
 Has decidido usar tu habilidad : Ataque Fuerte
 Daño : 12 , Costo Energia : 8 , Usos : 6/10
 ======================================================================
-Darius ha recibido 12 de daño pero tu armadura te ha protegido 6 de daño
-HP : 87/125
+Rammus ha recibido 14 de daño pero tu armadura te ha protegido 6 de daño
+HP : 85/125
 ======================================================================
-  [ENEMY]   Heraldodeljuicio  > Acción de combate  > Darius   -> 6 dmg
+  [ENEMY]   Heraldodeljuicio  > Acción de combate  > Rammus   -> 8 dmg
 
 ========================================================================================================
 
@@ -225,293 +225,3 @@ HP : 87/125
 
 =========================================================================================================
 
-
-======================================================================
-
-        BATTLE LOG - Round 6
-
-======================================================================
-======================================================================
-[Attack]
-Has decidido usar tu habilidad : Golpe de espada
-Daño : 20 , Costo Energia : 15 , Usos : 0/5
-======================================================================
-Heraldodeljuicio ha recibido 20 de daño. 
-HP : 130/150
-
-======================================================================
-
-        BATTLE LOG - Round 6
-
-======================================================================
-  [HERO]   Darius  > Acción de combate  > Heraldodeljuicio   -> 20 dmg
-======================================================================
-======================================================================
-[Attack]
-Has decidido usar tu habilidad : Ataque Fuerte
-Daño : 12 , Costo Energia : 8 , Usos : 5/10
-======================================================================
-Darius ha recibido 12 de daño pero tu armadura te ha protegido 6 de daño
-HP : 81/125
-======================================================================
-  [ENEMY]   Heraldodeljuicio  > Acción de combate  > Darius   -> 6 dmg
-
-========================================================================================================
-
-    Remaining enemies: 1       |           Heroes standing: 1
-
-=========================================================================================================
-
-
-======================================================================
-
-        BATTLE LOG - Round 7
-
-======================================================================
-======================================================================
-[Attack]
-Has decidido usar tu habilidad : Golpe de espada
-Daño : 20 , Costo Energia : 15 , Usos : -1/5
-======================================================================
-Heraldodeljuicio ha recibido 20 de daño. 
-HP : 110/150
-
-======================================================================
-
-        BATTLE LOG - Round 7
-
-======================================================================
-  [HERO]   Darius  > Acción de combate  > Heraldodeljuicio   -> 20 dmg
-======================================================================
-======================================================================
-[Attack]
-Has decidido usar tu habilidad : Ataque Fuerte
-Daño : 12 , Costo Energia : 8 , Usos : 4/10
-======================================================================
-Darius ha recibido 12 de daño pero tu armadura te ha protegido 6 de daño
-HP : 75/125
-======================================================================
-  [ENEMY]   Heraldodeljuicio  > Acción de combate  > Darius   -> 6 dmg
-
-========================================================================================================
-
-    Remaining enemies: 1       |           Heroes standing: 1
-
-=========================================================================================================
-
-
-======================================================================
-
-        BATTLE LOG - Round 8
-
-======================================================================
-======================================================================
-[Attack]
-Has decidido usar tu habilidad : Golpe de espada
-Daño : 20 , Costo Energia : 15 , Usos : -2/5
-======================================================================
-Heraldodeljuicio ha recibido 20 de daño. 
-HP : 90/150
-
-======================================================================
-
-        BATTLE LOG - Round 8
-
-======================================================================
-  [HERO]   Darius  > Acción de combate  > Heraldodeljuicio   -> 20 dmg
-======================================================================
-======================================================================
-[Attack]
-Has decidido usar tu habilidad : Ataque Fuerte
-Daño : 12 , Costo Energia : 8 , Usos : 3/10
-======================================================================
-Darius ha recibido 12 de daño pero tu armadura te ha protegido 6 de daño
-HP : 69/125
-======================================================================
-  [ENEMY]   Heraldodeljuicio  > Acción de combate  > Darius   -> 6 dmg
-
-========================================================================================================
-
-    Remaining enemies: 1       |           Heroes standing: 1
-
-=========================================================================================================
-
-
-======================================================================
-
-        BATTLE LOG - Round 9
-
-======================================================================
-======================================================================
-[Attack]
-Has decidido usar tu habilidad : Golpe de espada
-Daño : 20 , Costo Energia : 15 , Usos : -3/5
-======================================================================
-Heraldodeljuicio ha recibido 20 de daño. 
-HP : 70/150
-
-======================================================================
-
-        BATTLE LOG - Round 9
-
-======================================================================
-  [HERO]   Darius  > Acción de combate  > Heraldodeljuicio   -> 20 dmg
-======================================================================
-======================================================================
-[Attack]
-Has decidido usar tu habilidad : Ataque Fuerte
-Daño : 12 , Costo Energia : 8 , Usos : 2/10
-======================================================================
-Darius ha recibido 12 de daño pero tu armadura te ha protegido 6 de daño
-HP : 63/125
-======================================================================
-  [ENEMY]   Heraldodeljuicio  > Acción de combate  > Darius   -> 6 dmg
-
-========================================================================================================
-
-    Remaining enemies: 1       |           Heroes standing: 1
-
-=========================================================================================================
-
-
-======================================================================
-
-        BATTLE LOG - Round 10
-
-======================================================================
-======================================================================
-[Attack]
-Has decidido usar tu habilidad : Golpe de espada
-Daño : 20 , Costo Energia : 15 , Usos : -4/5
-======================================================================
-Heraldodeljuicio ha recibido 20 de daño. 
-HP : 50/150
-
-======================================================================
-
-        BATTLE LOG - Round 10
-
-======================================================================
-  [HERO]   Darius  > Acción de combate  > Heraldodeljuicio   -> 20 dmg
-======================================================================
-======================================================================
-[Attack]
-Has decidido usar tu habilidad : Ataque Fuerte
-Daño : 12 , Costo Energia : 8 , Usos : 1/10
-======================================================================
-Darius ha recibido 12 de daño pero tu armadura te ha protegido 6 de daño
-HP : 57/125
-======================================================================
-  [ENEMY]   Heraldodeljuicio  > Acción de combate  > Darius   -> 6 dmg
-
-========================================================================================================
-
-    Remaining enemies: 1       |           Heroes standing: 1
-
-=========================================================================================================
-
-
-======================================================================
-
-        BATTLE LOG - Round 11
-
-======================================================================
-======================================================================
-[Attack]
-Has decidido usar tu habilidad : Golpe de espada
-Daño : 20 , Costo Energia : 15 , Usos : -5/5
-======================================================================
-Heraldodeljuicio ha recibido 20 de daño. 
-HP : 30/150
-
-======================================================================
-
-        BATTLE LOG - Round 11
-
-======================================================================
-  [HERO]   Darius  > Acción de combate  > Heraldodeljuicio   -> 20 dmg
-======================================================================
-======================================================================
-[Attack]
-Has decidido usar tu habilidad : Ataque Fuerte
-Daño : 12 , Costo Energia : 8 , Usos : 0/10
-======================================================================
-Darius ha recibido 12 de daño pero tu armadura te ha protegido 6 de daño
-HP : 51/125
-======================================================================
-  [ENEMY]   Heraldodeljuicio  > Acción de combate  > Darius   -> 6 dmg
-
-========================================================================================================
-
-    Remaining enemies: 1       |           Heroes standing: 1
-
-=========================================================================================================
-
-
-======================================================================
-
-        BATTLE LOG - Round 12
-
-======================================================================
-======================================================================
-[Attack]
-Has decidido usar tu habilidad : Golpe de espada
-Daño : 20 , Costo Energia : 15 , Usos : -6/5
-======================================================================
-Heraldodeljuicio ha recibido 20 de daño. 
-HP : 10/150
-
-======================================================================
-
-        BATTLE LOG - Round 12
-
-======================================================================
-  [HERO]   Darius  > Acción de combate  > Heraldodeljuicio   -> 20 dmg
-======================================================================
-======================================================================
-[Attack]
-Has decidido usar tu habilidad : Ataque Fuerte
-Daño : 12 , Costo Energia : 8 , Usos : -1/10
-======================================================================
-Darius ha recibido 12 de daño pero tu armadura te ha protegido 6 de daño
-HP : 45/125
-======================================================================
-  [ENEMY]   Heraldodeljuicio  > Acción de combate  > Darius   -> 6 dmg
-
-========================================================================================================
-
-    Remaining enemies: 1       |           Heroes standing: 1
-
-=========================================================================================================
-
-
-======================================================================
-
-        BATTLE LOG - Round 13
-
-======================================================================
-======================================================================
-[Attack]
-Has decidido usar tu habilidad : Golpe de espada
-Daño : 20 , Costo Energia : 15 , Usos : -7/5
-======================================================================
-Heraldodeljuicio ha recibido 20 de daño. 
-HP : 0/150
-
-======================================================================
-
-        BATTLE LOG - Round 13
-
-======================================================================
-  [HERO]   Darius  > Acción de combate  > Heraldodeljuicio   -> 10 dmg | DEFEATED!
-======================================================================
-
-========================================================================================================
-
-    Remaining enemies: 0       |           Heroes standing: 1
-
-=========================================================================================================
-
-Daño total infligido: 250
-Heroe con mas daño: Darius (250 pts de daño).
-Enemigo derrotado: Locusta (en 5 rondas de 14).

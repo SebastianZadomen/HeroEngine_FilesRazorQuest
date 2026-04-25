@@ -1,4 +1,5 @@
-﻿using HeroEngine.Data;
+﻿using HeroEngine.Core.Data;
+using HeroEngine.Data;
 using HeroEngine.Model.Ability;
 using HeroEngine.Model.Enemy;
 using HeroEngine.Model.Heroes;
@@ -162,7 +163,12 @@ Necesitan de tu ayuda , elige tu clase : ";
     }
     public static void StartCombat(Hero[] playerTeam)
     {
+        ConfigManager configManager = new ConfigManager();
+        GameConfig config = configManager.LoadConfig();
+
         CombatLog logger = new CombatLog();
+
+        int maxRounds = config.MaxCombatRounds;
 
         string path = @"..\..\..\Files\CombatLog.txt";
         CombatUtils.SaveParticipants(playerTeam, CountPlayer);
@@ -235,12 +241,12 @@ Necesitan de tu ayuda , elige tu clase : ";
 
         int round = 1;
 
-        while (HasAliveEntities(playerTeam, CountPlayer) && HasAliveEntities(enemies, enemyCount))
+        while (HasAliveEntities(playerTeam, CountPlayer) && HasAliveEntities(enemies, enemyCount) && round < maxRounds)
         {
             logger.LogRoundStart(round);
 
             FillHeroes(playerTeam, activeHeroes, CountPlayer);
-            FillEnemies(enemies, activeEnemies, enemyCount, logger);
+            FillEnemies(enemies, activeEnemies, enemyCount, logger, config.LevelMultiplier, activeHeroes);
 
             for (int slot = 0; slot < 2; slot++)
             {
@@ -285,7 +291,7 @@ Necesitan de tu ayuda , elige tu clase : ";
 
                         int lifeBefore = target.Health;
 
-                        activeHeroes[slot].UseSkills(target, logger);
+                        activeHeroes[slot].UseSkills(target, logger, config.CriticalHitChance);
                         int damage = lifeBefore - target.Health;
                         CombatUtils.RegisterDamage(activeHeroes[slot].Name, damage);
 
@@ -295,7 +301,7 @@ Necesitan de tu ayuda , elige tu clase : ";
                         bool killed = !target.IsAlive;
 
 
-                        logger.LogAction("HERO", activeHeroes[slot].Name, "Acción de combate", target.Name, lifeBefore-target.Health, killed);
+                        logger.LogAction("HERO", activeHeroes[slot].Name, "Acción de combate", target.Name, lifeBefore - target.Health, killed);
                         logger.LogMessage("======================================================================");
 
                         if (killed)
@@ -319,7 +325,7 @@ Necesitan de tu ayuda , elige tu clase : ";
                     }
                 }
 
-       
+
                 if (activeEnemies[slot] != null && activeEnemies[slot].IsAlive)
                 {
                     Hero targetHero = GetFirstAliveHero(activeHeroes);
@@ -328,9 +334,9 @@ Necesitan de tu ayuda , elige tu clase : ";
 
                         int lifeHeroBefore = targetHero.Health;
 
-                        activeEnemies[slot].ActionsPerTurn(activeHeroes, logger);
+                        activeEnemies[slot].ActionsPerTurn(activeHeroes, logger, 0.1);
 
-                        logger.LogAction("ENEMY", activeEnemies[slot].Name, "Acción de combate", targetHero.Name, lifeHeroBefore-targetHero.Health, !targetHero.IsAlive);
+                        logger.LogAction("ENEMY", activeEnemies[slot].Name, "Acción de combate", targetHero.Name, lifeHeroBefore - targetHero.Health, !targetHero.IsAlive);
                     }
                 }
             }
@@ -343,6 +349,10 @@ Necesitan de tu ayuda , elige tu clase : ";
             logger.SaveToFile(path);
             Console.WriteLine("\nPulsa Enter para la siguiente ronda...");
             Console.ReadKey();
+            if (round < maxRounds)
+            {
+                Console.WriteLine("Has llegado al maximo de rondas configurado");
+            }
         }
 
         Console.Clear();
@@ -425,16 +435,21 @@ Necesitan de tu ayuda , elige tu clase : ";
         }
     }
 
-    public static void FillEnemies(Enemy[] reserves, Enemy[] active, int reserveCount, CombatLog logger)
+    public static void FillEnemies(Enemy[] reserves, Enemy[] active, int reserveCount, CombatLog logger, double expMultiplier, Hero[] heroActive)
     {
         for (int i = 0; i < 2; i++)
         {
             if (active[i] == null || !active[i].IsAlive)
             {
+                for (int h = 0; h < heroActive.Length - 1 && active[i] != null && !active[i].IsAlive; h++)
+                {
+                    heroActive[h].AddExperience(active[i].ExperienceReward,expMultiplier);
+                }
                 for (int j = 0; j < reserveCount; j++)
                 {
                     if (reserves[j] != null && reserves[j].IsAlive && reserves[j] != active[0] && reserves[j] != active[1])
                     {
+                        
                         active[i] = reserves[j];
                         logger.LogAction("SISTEMA", active[i].Name, "Aparece desde las sombras", "Campo", 0);
                         j = reserveCount; 

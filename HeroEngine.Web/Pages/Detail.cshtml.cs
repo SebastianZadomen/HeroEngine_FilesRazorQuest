@@ -9,11 +9,12 @@ namespace HeroEngine.Web.Pages
     public class DetailModel : PageModel
     {
         public Hero HeroSelected { get; set; }
-   
+        public HeroAnalytics AnalyticsTool = new HeroAnalytics();
+
 
         public void OnGet(string name) 
         {
-           // HeroSelected = GameData.Repository.;
+            HeroSelected = AnalyticsTool.SearchSingleHeroByName(name);
 
         }
     }

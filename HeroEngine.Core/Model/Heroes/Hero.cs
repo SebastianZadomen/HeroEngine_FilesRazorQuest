@@ -99,10 +99,13 @@ namespace HeroEngine.Model.Heroes
             log.LogMessage(damageCritical.Equals(Damage) ? $"Inflige {damageCritical} de daño.(Golpe normal)" : $"Inflige {damageCritical} de daño.(GolpeCritico)");
             return damageCritical;
         }
-        public void AddExperience(int expAdd)
+        public void AddExperience(int expAdd, double multiplier)
         {
-            _exp += expAdd; 
+            double expSet = (double)expAdd * multiplier; 
 
+            _exp += (int)expSet;
+
+            Console.WriteLine($"Has recibido {(int)expSet} exp || Tienes {Experience}/{ExpMax} exp");
            
             while (_exp >= ExpMax)
             {
@@ -190,7 +193,7 @@ namespace HeroEngine.Model.Heroes
 
         }
 
-        public void UseSkills(Hero target, CombatLog log)
+        public void UseSkills(Hero target, CombatLog log, double probability)
         {
             OrderSkills();
             ShowSkills();
@@ -217,12 +220,13 @@ namespace HeroEngine.Model.Heroes
                     }
                     else
                     {
-                        Skills[index].AbilityActivation(target, this, log);
+                        Skills[index].AbilityActivation(target, this, log, probability);
                         validSelection = true;
                     }
                 }
             } while (!validSelection);
         }
+      
 
 
         public void OrderSkills()

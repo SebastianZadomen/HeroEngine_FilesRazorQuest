@@ -25,16 +25,16 @@ namespace HeroEngine.Model.Ability
             Type = TypeSkills.Ataque;
         }
 
-        public override void AbilityActivation(Hero target, Hero caster, CombatLog log)
+        public override void AbilityActivation(Hero target, Hero caster, CombatLog log, double probability)
         {
             log.LogMessage("======================================================================");
             log.LogMessage("[Attack]");
             log.LogMessage($"Has decidido usar tu habilidad : {Name}");
             log.LogMessage($"Daño : {Damage} , Costo Energia : {Cost} , Usos : {PointsUse}/{PointUseBase}");
             log.LogMessage("======================================================================");
+            
 
-
-            target.TakeDamage(Damage, log);
+            target.TakeDamage(CalculteProbabilityCritic(probability), log);
             PointsUse -= 1;
 
             if (caster is IEnergy energyUser)
@@ -60,6 +60,18 @@ namespace HeroEngine.Model.Ability
             if (rarity == RarityType.Epico) return damage = random.Next(20, 31);
             return damage = 10;
 
+        }
+        public int CalculteProbabilityCritic(double probability)
+        {
+            Random rnd = new Random();
+            double probabilidadExito = probability;
+            double damage = Damage;
+
+            if (rnd.NextDouble() < probabilidadExito)
+            {
+                damage = damage * 1.2; 
+            }
+            return (int)damage;
         }
     }
 }
